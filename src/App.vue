@@ -16,17 +16,14 @@ export default {
   data() {
     return {
       titulo: 'Alurapic',
-      fotos: [
-        {
-          url: 'https://conteudo.imguol.com.br/c/entretenimento/54/2020/04/28/cachorro-pug-1588098472110_v2_900x506.jpg.webp',
-          titulo: 'Cachorro'
-        },
-        {
-          url: 'https://conteudo.imguol.com.br/c/entretenimento/54/2020/04/28/cachorro-pug-1588098472110_v2_900x506.jpg.webp',
-          titulo: 'Cachorrão'
-        }
-      ]
+      fotos: []
     }
+  },
+
+  created() {
+    this.$http.get('http://localhost:3000/v1/fotos')
+      .then(res => res.json())
+      .then(fotos => this.fotos = fotos, err => console.log(err));
   }
 
 }
